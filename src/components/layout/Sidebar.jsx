@@ -85,9 +85,19 @@ const menuItems = [
 export default function Sidebar() {
   const { isSidebarOpen, setIsSidebarOpen } = useSidebar();
   const pathname = usePathname();
-  useEffect(()=>{
-    window.addEventListener('click', ()=> setIsSidebarOpen(false))
-  },[isSidebarOpen])
+  
+  useEffect(() => {
+  if (typeof window !== "undefined") {
+    const handleClick = () => setIsSidebarOpen(false);
+    window.addEventListener("click", handleClick);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }
+}, [isSidebarOpen, setIsSidebarOpen]);
+
 
   return (
     <div
