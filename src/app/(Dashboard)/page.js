@@ -15,7 +15,7 @@ const poppins = Poppins({
   weight: ["400", "700"],
 });
 
-function page() {
+function Page() {
   const { isSidebarOpen } = useSidebar();
 
   const boxData = [
@@ -148,4 +148,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
